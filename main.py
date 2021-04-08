@@ -1,4 +1,4 @@
-from os import path
+from os import path, makedirs
 from datetime import datetime
 from shutil import copy2
 
@@ -16,6 +16,8 @@ class BackUp:
         self.back_up_path = path.join(back_up_path)
 
     def do_back_up(self):
+        if not path.exists(path.join(BACK_UP_PATH)):
+            makedirs(path.join(BACK_UP_PATH))
         for dir in DIRS_FROM_BACK_UP:
             file_name_src = path.join(dir, BASE_NAME)
             file_name_dst = self.get_file_name(dir)
